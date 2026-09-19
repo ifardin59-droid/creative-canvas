@@ -1,24 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Petal & Epoch | Botanical Keepsake Studio" },
+      {
+        name: "description",
+        content:
+          "Preserve wedding, anniversary, and memorial flowers in handcrafted archival resin keepsakes.",
+      },
+      { property: "og:title", content: "Petal & Epoch | Botanical Keepsake Studio" },
+      {
+        property: "og:description",
+        content:
+          "Turn cherished celebration flowers into crystal-clear, handcrafted archival keepsakes.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <main className="h-dvh w-full overflow-hidden bg-background">
+      <iframe
+        className="h-full w-full border-0"
+        src="/petal-and-epoch.html"
+        title="Petal & Epoch botanical keepsake studio"
       />
-    </div>
+    </main>
   );
 }
